@@ -1,0 +1,820 @@
+---
+  openapi: "3.0.0"
+  paths: 
+    /: 
+      get: 
+        operationId: "AppController_getExam"
+        parameters: []
+        responses: 
+          200: 
+            description: ""
+            content: 
+              application/json: 
+                schema: 
+                  type: "string"
+        tags: 
+          - "Test Connectivity"
+    /exams: 
+      post: 
+        operationId: "ExamController_create"
+        summary: "create exam"
+        description: "create exam"
+        parameters: []
+        requestBody: 
+          required: true
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/NewExamDTO"
+        responses: 
+          200: 
+            description: "Success"
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/ExamDTO"
+          201: 
+            description: ""
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/ExamDTO"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Exams"
+      get: 
+        operationId: "ExamController_getAll"
+        summary: "get all exams"
+        description: "get all exams"
+        parameters: []
+        responses: 
+          200: 
+            description: "Success"
+            content: 
+              application/json: 
+                schema: 
+                  type: "array"
+                  items: 
+                    $ref: "#/components/schemas/ExamDTO"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Exams"
+    /exams/{id}: 
+      get: 
+        operationId: "ExamController_getOne"
+        summary: "get exam by id"
+        description: "get exam by id"
+        parameters: 
+          - 
+            name: "id"
+            required: true
+            in: "path"
+            schema: 
+              type: "number"
+        responses: 
+          200: 
+            description: "Success"
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/ExamDTO"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Exams"
+      put: 
+        operationId: "ExamController_update"
+        summary: "update a exam"
+        description: "update a exam"
+        parameters: 
+          - 
+            name: "id"
+            required: true
+            in: "path"
+            schema: 
+              type: "number"
+        requestBody: 
+          required: true
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/ExamDTO"
+        responses: 
+          200: 
+            description: "Success"
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/ExamDTO"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Exams"
+      delete: 
+        operationId: "ExamController_delete"
+        summary: "delete a exam"
+        description: "delete a exam"
+        parameters: 
+          - 
+            name: "id"
+            required: true
+            in: "path"
+            schema: 
+              type: "number"
+        responses: 
+          204: 
+            description: "Success"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Exams"
+    /questions: 
+      post: 
+        operationId: "QuestionController_create"
+        summary: "create question"
+        description: "create question"
+        parameters: []
+        requestBody: 
+          required: true
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/NewQuestionDTO"
+        responses: 
+          200: 
+            description: "Success"
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/QuestionDTO"
+          201: 
+            description: ""
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/QuestionDTO"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Questions"
+      get: 
+        operationId: "QuestionController_getAll"
+        summary: "get all questions"
+        description: "get all questions"
+        parameters: []
+        responses: 
+          200: 
+            description: "Success"
+            content: 
+              application/json: 
+                schema: 
+                  type: "array"
+                  items: 
+                    $ref: "#/components/schemas/QuestionDTO"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Questions"
+    /questions/{id}: 
+      get: 
+        operationId: "QuestionController_getOne"
+        summary: "get question by id"
+        description: "get question by id"
+        parameters: 
+          - 
+            name: "id"
+            required: true
+            in: "path"
+            schema: 
+              type: "number"
+        responses: 
+          200: 
+            description: "Success"
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/QuestionDTO"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Questions"
+      put: 
+        operationId: "QuestionController_update"
+        summary: "update a question"
+        description: "update a question"
+        parameters: 
+          - 
+            name: "id"
+            required: true
+            in: "path"
+            schema: 
+              type: "number"
+        requestBody: 
+          required: true
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/QuestionDTO"
+        responses: 
+          200: 
+            description: "Success"
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/QuestionDTO"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Questions"
+      delete: 
+        operationId: "QuestionController_delete"
+        summary: "delete a question"
+        description: "delete a question"
+        parameters: 
+          - 
+            name: "id"
+            required: true
+            in: "path"
+            schema: 
+              type: "number"
+        responses: 
+          204: 
+            description: "Success"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Questions"
+    /students: 
+      post: 
+        operationId: "StudentController_create"
+        summary: "create student"
+        description: "create student"
+        parameters: []
+        requestBody: 
+          required: true
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/NewStudentDTO"
+        responses: 
+          200: 
+            description: "Success"
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/StudentDTO"
+          201: 
+            description: ""
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/StudentDTO"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Students"
+      get: 
+        operationId: "StudentController_getAll"
+        summary: "get all students"
+        description: "get all students"
+        parameters: []
+        responses: 
+          200: 
+            description: "Success"
+            content: 
+              application/json: 
+                schema: 
+                  type: "array"
+                  items: 
+                    $ref: "#/components/schemas/StudentDTO"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Students"
+    /students/{id}: 
+      get: 
+        operationId: "StudentController_getOne"
+        summary: "get student by id"
+        description: "get student by id"
+        parameters: 
+          - 
+            name: "id"
+            required: true
+            in: "path"
+            schema: 
+              type: "number"
+        responses: 
+          200: 
+            description: "Success"
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/StudentDTO"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Students"
+      put: 
+        operationId: "StudentController_update"
+        summary: "update a student"
+        description: "update a student"
+        parameters: 
+          - 
+            name: "id"
+            required: true
+            in: "path"
+            schema: 
+              type: "number"
+        requestBody: 
+          required: true
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/StudentDTO"
+        responses: 
+          200: 
+            description: "Success"
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/StudentDTO"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Students"
+      delete: 
+        operationId: "StudentController_delete"
+        summary: "delete a student"
+        description: "delete a student"
+        parameters: 
+          - 
+            name: "id"
+            required: true
+            in: "path"
+            schema: 
+              type: "number"
+        responses: 
+          204: 
+            description: "Success"
+          400: 
+            description: "Error: Bad Request"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          401: 
+            description: "Error: Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          404: 
+            description: "Error: Not Found"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+          422: 
+            description: "Error: Unprocessable"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+        tags: 
+          - "Students"
+  info: 
+    title: "Sample NestJs App"
+    description: "Sample NestJs App"
+    version: "1.0"
+    contact: {}
+  tags: 
+    - 
+      name: "NestJs"
+      description: ""
+  servers: []
+  components: 
+    schemas: 
+      QuestionDTO: 
+        type: "object"
+        properties: 
+          createdAt: 
+            type: "string"
+          updatedAt: 
+            type: "string"
+          id: 
+            type: "number"
+          title: 
+            type: "string"
+          description: 
+            type: "string"
+        required: 
+          - "id"
+          - "title"
+          - "description"
+      ExamDTO: 
+        type: "object"
+        properties: 
+          createdAt: 
+            type: "string"
+          updatedAt: 
+            type: "string"
+          questions: 
+            type: "array"
+            items: 
+              $ref: "#/components/schemas/QuestionDTO"
+          students: 
+            type: "array"
+            items: 
+              $ref: "#/components/schemas/StudentDTO"
+          id: 
+            type: "number"
+          title: 
+            type: "string"
+        required: 
+          - "id"
+          - "title"
+      StudentDTO: 
+        type: "object"
+        properties: 
+          createdAt: 
+            type: "string"
+          updatedAt: 
+            type: "string"
+          exams: 
+            type: "array"
+            items: 
+              $ref: "#/components/schemas/ExamDTO"
+          id: 
+            type: "number"
+          firstName: 
+            type: "string"
+          lastName: 
+            type: "string"
+        required: 
+          - "id"
+          - "firstName"
+          - "lastName"
+      NewExamDTO: 
+        type: "object"
+        properties: 
+          createdAt: 
+            type: "string"
+          updatedAt: 
+            type: "string"
+          questions: 
+            type: "array"
+            items: 
+              $ref: "#/components/schemas/QuestionDTO"
+          students: 
+            type: "array"
+            items: 
+              $ref: "#/components/schemas/StudentDTO"
+          title: 
+            type: "string"
+        required: 
+          - "title"
+      NewQuestionDTO: 
+        type: "object"
+        properties: 
+          createdAt: 
+            type: "string"
+          updatedAt: 
+            type: "string"
+          examId: 
+            type: "number"
+          title: 
+            type: "string"
+          description: 
+            type: "string"
+        required: 
+          - "examId"
+          - "title"
+          - "description"
+      NewStudentDTO: 
+        type: "object"
+        properties: 
+          createdAt: 
+            type: "string"
+          updatedAt: 
+            type: "string"
+          exams: 
+            type: "array"
+            items: 
+              $ref: "#/components/schemas/ExamDTO"
+          firstName: 
+            type: "string"
+          lastName: 
+            type: "string"
+        required: 
+          - "firstName"
+          - "lastName"
